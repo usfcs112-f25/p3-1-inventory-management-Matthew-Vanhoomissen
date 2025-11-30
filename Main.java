@@ -7,12 +7,13 @@ public class Main {
         Scanner scnr = new Scanner(System.in);
         BST tree = new BST();
         HashSet<Product> set1 = new HashSet<>();
+        HashSet<Product> set2 = new HashSet<>();
         set1 = ReadCSV.createSet(ReadCSV.parseFile("product.csv"), set1, "electronics");
-        System.out.println(set1.toString());
+        set2 = ReadCSV.createSet(ReadCSV.parseFile("product.csv"), set2, "clothing");
         ReadCSV.loadItems(ReadCSV.parseFile("product.csv"), tree);
 
         while(true) {
-            System.out.println("Enter choice: \n[1] Quit \n[2] Add new product \n[3] Look up product \n[4] Display products \n[5] Sort list");
+            System.out.println("Enter choice: \n[1] Quit \n[2] Add new product \n[3] Look up product \n[4] Display products \n[5] Print list by tags");
             int choice = scnr.nextInt();
             scnr.nextLine();
 
@@ -45,6 +46,17 @@ public class Main {
             }
             else if(choice == 4) {
                 tree.inOrder(tree.getRoot());
+            }
+            else if(choice == 5) {
+                System.out.println("Select which list to display: \n[1] Electronics\n[2] Clothing");
+                int user = scnr.nextInt();
+                scnr.nextLine();
+                if(user == 1) {
+                    System.out.println(set1.toString());
+                }
+                else if(user == 2) {
+                    System.out.println(set2.toString());
+                }
             }
 
         }       
