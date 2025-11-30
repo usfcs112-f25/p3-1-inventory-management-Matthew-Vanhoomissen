@@ -1,9 +1,15 @@
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scnr = new Scanner(System.in);
         BST tree = new BST();
+        HashSet<Product> set1 = new HashSet<>();
+        set1 = ReadCSV.createSet(ReadCSV.parseFile("product.csv"), set1, "electronics");
+        System.out.println(set1.toString());
+        ReadCSV.loadItems(ReadCSV.parseFile("product.csv"), tree);
 
         while(true) {
             System.out.println("Enter choice: \n[1] Quit \n[2] Add new product \n[3] Look up product \n[4] Display products \n[5] Sort list");

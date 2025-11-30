@@ -18,4 +18,27 @@ public class Product {
     public float getPrice() {
         return price;
     }
+
+    public boolean contains(String tag) {
+        for(String s : tags) {
+            if(s.equals(tag)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String toString() {
+        String temp = "";
+        temp += name + "\n";
+        temp += " - Product ID: " + productID;
+        temp += " - Price: " + price;
+        temp += " - Category: " + category;
+        temp += " - Quantity: " + quanitity;
+        temp += " - tags: ";
+        for(String s : tags) {
+            temp += s + ";";
+        }
+        return temp;
+    }
 }

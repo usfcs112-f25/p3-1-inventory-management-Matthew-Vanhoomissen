@@ -28,4 +28,8 @@ public class Node {
     public Node getLeft() {
         return left;
     }
+
+    public String toString() {
+        return data.toString();
+    }
 }
