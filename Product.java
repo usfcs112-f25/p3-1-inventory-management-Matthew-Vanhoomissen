@@ -14,4 +14,8 @@ public class Product {
         this.quanitity = quantity;
         this.tags = tagList.split(";");
     }
+
+    public float getPrice() {
+        return price;
+    }
 }
