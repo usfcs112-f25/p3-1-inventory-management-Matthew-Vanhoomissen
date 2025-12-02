@@ -32,19 +32,7 @@ public class ReadCSV {
         return lines;
     }
 
-    public static void loadItems(ArrayList<String> lines, BST tree) {
-        boolean first = true;
-        for(String line : lines) {
-            if(first) {
-                first = false;
-                continue;
-            }
-            String[] data = line.split(",");
-            tree.addNode(new Node(new Product(data[0], data[1], Float.parseFloat(data[2]), data[3], Integer.parseInt(data[4]), data[5])));
-        }
-    }
-
-    public static HashSet<Product> createSet(ArrayList<String> lines, HashSet<Product> set, String tag) {
+    public static void loadItems(ArrayList<String> lines, BST tree, CHashTable<String, Product> table) {
         boolean first = true;
         for(String line : lines) {
             if(first) {
@@ -53,10 +41,18 @@ public class ReadCSV {
             }
             String[] data = line.split(",");
             Product temp = new Product(data[0], data[1], Float.parseFloat(data[2]), data[3], Integer.parseInt(data[4]), data[5]);
-            if(temp.contains(tag)) {
-                set.add(temp);
+            table.put(data[0], temp);
+            tree.addNode(new Node(new Product(data[0], data[1], Float.parseFloat(data[2]), data[3], Integer.parseInt(data[4]), data[5])));
+        }
+    }
+
+    public static HashSet<Product> createSet(CHashTable<String, Product> table, HashSet<Product> set, String tag) {
+        for(int i = 0; i < table.getSize(); i++) {
+            if(table.getEntry(i) != null && table.getValue(i) != null && table.getValue(i).contains(tag)) {
+                set.add(table.getValue(i));
             }
         }
+        
         return set;
     }
 }

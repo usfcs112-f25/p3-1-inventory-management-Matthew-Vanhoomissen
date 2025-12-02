@@ -19,6 +19,10 @@ public class Product {
         return price;
     }
 
+    public String getProductID() {
+        return productID;
+    }
+
     public boolean contains(String tag) {
         for(String s : tags) {
             if(s.equals(tag)) {

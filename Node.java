@@ -17,6 +17,10 @@ public class Node {
         this.right = node;
     }
 
+    public void setData(Product data) {
+        this.data = data;
+    }
+
     public Product getData() {
         return data;
     }
