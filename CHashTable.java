@@ -1,28 +1,54 @@
-
+/**
+ * Custom hashtable that uses generic typing
+ * @author Matthew 
+ * @version 12/1/25
+ */
 public class CHashTable<K, V> {
+    //Stores capacity and the deleted variable plus size and the table array
     private static final int CAPACITY = 30;
     private static final Entry DELETED = new Entry(null, null);
     private int size;
     private Entry<K, V>[] table;
 
+    //Initializes the table
     public CHashTable() {
         size = 0;
         table = (Entry<K, V>[]) new Entry[CAPACITY];
     }
 
+    /**
+     * gets hash key
+     * @param key
+     * @return int index
+     */
     private int hash(K key) {
         return Math.abs(key.hashCode() % table.length);
     }
 
+    /**
+     * gets the private entry
+     * @param i index
+     * @return entry
+     */
     public Entry<K, V> getEntry(int i) {
         return table[i];
     }
 
+    /**
+     * gets value
+     * @param i index
+     * @return value
+     */
     public V getValue(int i) {
         return table[i].value;
     }
 
 
+    /**
+     * searches the table to find the key
+     * @param key to search for
+     * @return value if found
+     */
     public V get(K key) {
         int index = hash(key);
         if(table[index] == null) {
@@ -32,6 +58,7 @@ public class CHashTable<K, V> {
             return table[index].value;
         }
         else {
+            //Uses linear probing to go to the next index if collision
             int i = index + 1;
             int save = index;
             while(true) {
@@ -57,6 +84,11 @@ public class CHashTable<K, V> {
         }
     }
 
+    /**
+     * puts in the key value entry and allows for editing
+     * @param key 
+     * @param value
+     */
     public void put(K key, V value) {
         if(containsKey(key)) {
             int index =  hash(key);
@@ -111,6 +143,11 @@ public class CHashTable<K, V> {
 
     }
 
+    /**
+     * Uses the get function to see if exists
+     * @param key
+     * @return if true
+     */
     public boolean containsKey(K key) {
         if(get(key) != null) {
             return true;
@@ -118,6 +155,9 @@ public class CHashTable<K, V> {
         return false; 
     }
 
+    /**
+     * prints the table values
+     */
     public void printTable() {
         System.out.println("\n=== Hash Table Contents ===");
         for (int i = 0; i < table.length; i++) {
@@ -130,10 +170,19 @@ public class CHashTable<K, V> {
         System.out.println("===========================\n");
     }
 
+    /**
+     * gets capacity
+     * @return cap
+     */
     public int getSize() {
         return CAPACITY;
     }
 
+    /**
+     * removes the key from table and replaces with deleted
+     * @param key to delete
+     * @return value of deleted
+     */
     public V remove(K key) {
         int index = hash(key);
         if(!containsKey(key)) {
@@ -167,11 +216,12 @@ public class CHashTable<K, V> {
             } 
             i++;
         }
-        // TODO: Implement removal (more complex with linear probing)
-        // Hint: You may need to mark deleted entries differently than empty slots
         
     }
 
+    /**
+     * Generic entry class
+     */
     private static class Entry<K, V> {
         K key;
         V value;

@@ -4,7 +4,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+/**
+ * Class that creates data structures and reads file
+ * @author Matthew
+ * @version 12/1/25
+ */
 public class ReadCSV {
+    /**
+     * Parses each line of a csv file
+     * @param fileName
+     * @return arraylist of the lines
+     */
     public static ArrayList<String> parseFile(String fileName) {
         BufferedReader reader = null;
         String line = null;
@@ -32,6 +42,12 @@ public class ReadCSV {
         return lines;
     }
 
+    /**
+     * Adds products to the BST and HashTable
+     * @param lines
+     * @param tree
+     * @param table
+     */
     public static void loadItems(ArrayList<String> lines, BST tree, CHashTable<String, Product> table) {
         boolean first = true;
         for(String line : lines) {
@@ -46,6 +62,13 @@ public class ReadCSV {
         }
     }
 
+    /**
+     * makes the set based on tag and uses the up to date HashTable
+     * @param table
+     * @param set
+     * @param tag
+     * @return
+     */
     public static HashSet<Product> createSet(CHashTable<String, Product> table, HashSet<Product> set, String tag) {
         for(int i = 0; i < table.getSize(); i++) {
             if(table.getEntry(i) != null && table.getValue(i) != null && table.getValue(i).contains(tag)) {

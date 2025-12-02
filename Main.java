@@ -2,13 +2,25 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+/**
+ * Main class that prompts user
+ * @author Matthew
+ * @version 12/1/25
+ */
 public class Main {
     public static void main(String[] args) {
+        //Initial set creation and fileName reading
         Scanner scnr = new Scanner(System.in);
         BST tree = new BST();
         CHashTable<String, Product> table = new CHashTable<>();
-        ReadCSV.loadItems(ReadCSV.parseFile("product.csv"), tree, table);
+        if(args.length != 1) {
+            System.out.println("Invalid command line argument, needs file name");
+            System.exit(0);
+        }
+        String fileName = args[0];
+        ReadCSV.loadItems(ReadCSV.parseFile(fileName), tree, table);
 
+        //User prompting and 
         while(true) {
             System.out.println("Enter choice: \n[1] Quit \n[2] Add new product \n[3] Look up product \n[4] Display products \n[5] Print list by tags\n[6] Delete product\n[7] Search by price");
             int choice = scnr.nextInt();

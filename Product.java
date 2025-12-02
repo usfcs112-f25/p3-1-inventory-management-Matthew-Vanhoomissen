@@ -1,4 +1,10 @@
+/**
+ * Custom product class
+ * @author Matthew
+ * @version 12/1/25
+ */
 public class Product {
+    //Stores values
     private String productID;
     private String name;
     private float price;
@@ -6,6 +12,7 @@ public class Product {
     private int quanitity;
     private String[] tags;
 
+    //Initializes product
     public Product(String productID, String name, float price, String category, int quantity, String tagList) {
         this.productID = productID;
         this.name = name;
@@ -23,6 +30,11 @@ public class Product {
         return productID;
     }
 
+    /**
+     * sees if tag array contains tag
+     * @param tag
+     * @return if true
+     */
     public boolean contains(String tag) {
         for(String s : tags) {
             if(s.equals(tag)) {
