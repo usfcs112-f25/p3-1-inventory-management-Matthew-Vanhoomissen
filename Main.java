@@ -104,7 +104,7 @@ public class Main {
                     System.out.println("Enter upper bound");
                     float upper = scnr.nextFloat();
                     scnr.nextLine();
-                    if(lower < 0 || upper <= 0) {
+                    if(lower < 0 || upper <= 0 || lower >= upper) {
                         System.out.println("Invalid bounds");
                         continue;
                     }
